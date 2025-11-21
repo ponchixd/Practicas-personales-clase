@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+// Defino la salud inicial y el nivel(de momenoto no hay sistema de nivel)
+#define Salud_Inicial 100 
+#define Nivel_Inical 1
+
+int main() {
+    // Añadido variables, igualo la vida a la salud inicial
+    int vida = Salud_Inicial; 
+    int danio_entrante;
+    int danio_saliente;
+
+    //Datos que añadira el jugador
+    int Opcion;
+    int Dado;
+
+    printf("Empieza D10 Adventure\n");
+    printf("----------------------------------\n");
+    
+do {
+    printf("Un enemigo aparace ante ti \n");
+    printf("0=Atacar, 1=Huir\n");
+    scanf("%d", &Opcion);
+
+    if (Opcion == 0) {
+
+        printf("Atacas al monstruo con tu espada!! \n");
+        printf("Lanzamiento del D10:\n");
+        scanf("%d", &Dado);
+
+            if (Dado >= 5 ) {
+
+                printf("¡IMPACTO! \n");
+                printf("El monstruo cae derrotado \n");
+            }
+
+            else if (Dado < 5) {
+
+                printf("Fallaste \n");
+                printf("El Montruo te ataca");
+                
+            }
+    }
+
+    else if (Opcion == 1) {
+
+        printf("Sales corriendo por tu vda \n");
+        printf("Lanzamiento del D10: \n");
+        scanf("%d", &Dado);
+
+        if (Dado >= 5 ) {
+
+                printf("Huyes con exito\n");
+                printf("El monstruo se aleja de ti \n");
+            }
+
+            else if (Dado < 5) {
+
+                printf("Fallaste \n");
+                printf("El Montruo te ataca");
+    } }
+
+
+    else {
+
+        printf("Ha ocurrido un error");
+    }
+    
+} while (vida > 0);
+
+    return 0;
+    }
