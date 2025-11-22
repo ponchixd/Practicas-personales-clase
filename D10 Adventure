@@ -16,57 +16,72 @@ int main() {
 
     printf("Empieza D10 Adventure\n");
     printf("----------------------------------\n");
+    printf("Aparece un monstro enfrente tuya \n");
+
     
-do {
-    printf("Un enemigo aparace ante ti \n");
-    printf("0=Atacar, 1=Huir\n");
-    scanf("%d", &Opcion);
-
-    if (Opcion == 0) {
-
-        printf("Atacas al monstruo con tu espada!! \n");
-        printf("Lanzamiento del D10:\n");
-        scanf("%d", &Dado);
-
-            if (Dado >= 5 ) {
-
-                printf("¡IMPACTO! \n");
-                printf("El monstruo cae derrotado \n");
-            }
-
-            else if (Dado < 5) {
-
-                printf("Fallaste \n");
-                printf("El Montruo te ataca");
+    do{
+        switch (Opcion) {
+            case 0: 
+            printf("Atacas al monstruo con tu espada!! \n");
+            printf("Lanzamiento del D10:\n");
+            scanf("%d", &Dado);
+            do{
+                switch (Dado) {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        printf("Fallaste, el monstruo te ataca \n");
+                        break;
+    
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                        printf("¡IMPACTO! El monstruo muere \n");
+                        break;
+                    default: 
+                        printf("Valor incorrecto\n")
+                        break;
+                    
+                }
+                } while(Dado >> 0 && Dado << 11); 
+            
+            case 1: 
+            printf("Sales corriendo por tu vda \n");
+            printf("Lanzamiento del D10: \n");
+            scanf("%d", &Dado);
+                switch (Dado) {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        printf("Fallaste, el monstruo te ataca \n");
+                        break;
+    
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                        printf("Sales corriendo \n");
+                        break;
+                    default: 
+                        printf("Valor incorrecto\n")
+                        break;
+                }
+           
+            default: 
+                printf("Valor incorrecto\n")
+                break;
                 
-            }
-    }
-
-    else if (Opcion == 1) {
-
-        printf("Sales corriendo por tu vda \n");
-        printf("Lanzamiento del D10: \n");
-        scanf("%d", &Dado);
-
-        if (Dado >= 5 ) {
-
-                printf("Huyes con exito\n");
-                printf("El monstruo se aleja de ti \n");
-            }
-
-            else if (Dado < 5) {
-
-                printf("Fallaste \n");
-                printf("El Montruo te ataca");
-    } }
-
-
-    else {
-
-        printf("Ha ocurrido un error");
-    }
+          
+          } while:(Dado >> 0 && Dado << 11);
     
 } while (vida > 0);
 
     return 0;
-    }
+}
