@@ -22,6 +22,7 @@ int main() {
     do{ //bucle principal "juego actual"
 
         printf("Aparece un monstro enfrente tuya \n");
+        printf("Tu vida: %d \n", vida);
         printf("Atacar = 0 // Huir = 1 \n");
         scanf("%d", &Opcion);
         
@@ -35,6 +36,8 @@ int main() {
                 switch (Dado) { //switch in to switch para definir las opciones de la tirada
                     case 1: case 2: case 3: case 4:
                         printf("Fallaste, el monstruo te ataca \n");
+                        vida = vida - 50;
+                        printf("Tu vida: %d \n", vida);
                         break;
     
                     case 5: case 6:  case 7: case 8: case 9: case 10:
@@ -74,7 +77,10 @@ int main() {
                 break;
  
     };
-} while(Opcion != 0 && Opcion != 1); 
+} while(vida > 1); 
+printf("GAME OVER");
+
+
     
     return 0;
     
