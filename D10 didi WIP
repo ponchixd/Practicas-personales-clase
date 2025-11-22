@@ -5,7 +5,6 @@
 #define xpNecesaria 100
 
 struct SAVE {
-    struct PLAYER;
     int slot;
     int ocpacion;
 };
