@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define xpNecesaria 100
+
+struct SAVE {
+    struct PLAYER;
+    int slot;
+    int ocpacion;
+};
+
+struct PLAYER {
+    char nombre;
+    int vida;
+    int vidaMaxima;
+    int xp; 
+    int nivel;
+    int dano;
+    int dinero;
+};
+
+struct MONSTER {
+    char nombre;
+    int vida;
+    int dano;
+};
+
+int tirarDadoD10(){
+    int resultado;
+    srand(time(NULL));
+    int resultado = (rand() % 10) + 1;
+    printf ("El resultado de la tirada del dado D10 es %d\n", resultado);
+}
+
+void elegirMonstruo(){
+    struct MONSTER monstruo;
+    int resultado;
+    srand(time(NULL));
+    int resultado = rand() % 3;
+    switch(resultado){
+        case 0:
+            monstruo.nombre = "Goblin";
+            monstruo.vida = 15;
+            monstruo.dano = 10;
+        break;
+        case 1:
+            monstruo.nombre = "Orco";
+            monstruo.vida = 20;
+            monstruo.dano =15;
+        break;
+        case 2:
+            monstruo.nombre = "Ghoul";
+            monstruo.vida = 30;
+            monstruo.dano = 20;
+    }
+}
+
+void danarMonstruo(){
+    struct MONSTER monstruo;
+    struct PLAYER player;
+    srand(time(NULL));
+    int resultado = rand() % 10;
+    int damage = resultado + player.dano;
+    switch(resultado){
+        case 0: 
+            printf("Has sacado pifia! No has hecho daño al %c\n", monstruo.nombre);
+        break;
+        case 10:
+            int damage = player.dano * 2;
+            printf("Has sacado crítico! le haces %d de daño al %c\n", damage, monstruo.nombre);
+            monstruo.vida = monstruo.vida - damage;
+        break;
+        default:
+            printf("Le has hecho %d puntos de daño al %c\n", damage, monstruo.nombre);
+            monstruo.vida = monstruo.vida - damage;
+        break;
+    }
+}
+
+void danarPlayer(){
+    struct MONSTER monstruo;
+    struct PLAYER player;
+    srand(time(NULL));
+    int resultado = rand() % 10;
+    int damage = resultado + monstruo.dano;
+    switch(resultado){
+        case 0: 
+            printf("Ha sacado pifia! No te ha hecho daño el %c\n", monstruo.nombre);
+        break;
+        case 10:
+            int damage = monstruo.dano * 2;
+            printf("Ha sacado crítico! Te hace %d de daño el %c\n", damage, monstruo.nombre);
+            player.vida = player.vida - damage;
+        break;
+        default:
+            printf("Te ha hecho %d puntos de daño el %c\n", damage, monstruo.nombre);
+            player.vida = player.vida - damage;
+        break;
+    }
+}
+
+void calcularXp(){
+    struct PLAYER player;
+    int exp;
+    player.xp = player.xp + exp;
+    if(player.xp > xpNecesaria){
+        player.xp = 0;
+        player.nivel = player.nivel + 1;
+        player.vidaMaxima = player.vidaMaxima + 50;
+        player.vida = player.vida + 50;
+        printf("Enhorabuena! has subido al nivel. %d\n", player.nivel );
+        printf("Tu nueva vida máxima es %d.\n", player.vidaMaxima);
+        printf("Te has curado 50 PS.\n");
+    }
+}
+
+void elegirRecompensa(){
+
+}
+
+
+int main(){
+    struct MONSTER monstruo;
+    struct PLAYER player;
+
+}
+
