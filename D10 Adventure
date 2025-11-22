@@ -2,7 +2,7 @@
 
 // Defino la salud inicial y el nivel(de momenoto no hay sistema de nivel)
 #define Salud_Inicial 100 
-#define Nivel_Inical 1
+#define Nivel_Inicial 1
 
 int main() {
     // Añadido variables, igualo la vida a la salud inicial
@@ -16,20 +16,23 @@ int main() {
 
     printf("Empieza D10 Adventure\n");
     printf("----------------------------------\n");
-    printf("Aparece un monstro enfrente tuya \n");
-    printf("Atacar = 0 // Huir = 1 \n");
-    scanf("%d", &Opcion);
+   
     
 
-    do{
+    do{ //bucle principal "juego actual"
+
+        printf("Aparece un monstro enfrente tuya \n");
+        printf("Atacar = 0 // Huir = 1 \n");
+        scanf("%d", &Opcion);
         
-        switch (Opcion) {
+        switch (Opcion) { //Meto un switch para las dos opciones
+            
             case 0: 
             printf("Atacas al monstruo con tu espada!! \n");
-            printf("Lanzamiento del D10:\n");
-            scanf("%d", &Dado);
-            do{
-                switch (Dado) {
+            do{ //bucle en caso de valor incorrecto 
+                printf("Lanzamiento del D10:\n");
+                scanf("%d", &Dado);
+                switch (Dado) { //switch in to switch para definir las opciones de la tirada
                     case 1: case 2: case 3: case 4:
                         printf("Fallaste, el monstruo te ataca \n");
                         break;
@@ -39,18 +42,17 @@ int main() {
                         break;
                     default: 
                         printf("Valor incorrecto\n");
-                        scanf("%d", &Dado);
                         break;
                     
                 };
-                } while(Dado < 0 || Dado > 10); 
+                } while(Dado < 1 || Dado > 10); 
                 break;
             
             case 1: 
-            printf("Sales corriendo por tu vda \n");
-            printf("Lanzamiento del D10: \n");
-            scanf("%d", &Dado);
+            printf("Intentas huir \n");
             do{
+                printf("Lanzamiento del D10: \n");
+                scanf("%d", &Dado);
                 switch (Dado) {
                     case 1: case 2: case 3: case 4:
                         printf("Fallaste, el monstruo te ataca \n");
@@ -61,23 +63,19 @@ int main() {
                         break;
                     default: 
                         printf("Valor incorrecto\n");
-                        scanf("%d", &Dado);
                         break;
                 };
+                } while(Dado < 1 || Dado > 10); 
+                break;
 
            
             default: 
                 printf("Valor incorrecto\n");
-                scanf("%d", &Opcion);
                 break;
-                
-          
-          } while(Dado < 0 || Dado > 10);
-          break;
  
     };
-} while(Opcion > 1 || Opcion < 0); 
-
+} while(Opcion != 0 && Opcion != 1); 
+    
     return 0;
-
+    
 }
