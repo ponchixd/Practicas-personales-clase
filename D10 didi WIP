@@ -4,14 +4,14 @@
 
 #define xpNecesaria 100
 
-struct SAVE {
+struct SAVE { //ESTRUCTURA ENCARGARDA DE LOS ARCHIVOS DE GUARDADO, MUCHO WORK IN PROGRESS
     int slot;
     int ocpacion;
 };
 
-struct PLAYER {
-    char nombre;
-    int vida;
+struct PLAYER { //ESTRUCTURA QUE DEFINE LOS PARAMETROS DEL JUGADOR. Seran modificados a lo largo de la funcion main(). 
+    char nombre;//Por tanto, en el momento de seleccionar jugador/archivo de guardado (funcion por hacer), se establecen 
+    int vida;   //los parametros base. No los uso con #define por que eso lo veo mas como algo a no modificar en todo el programa (nose si es lo correcto jeje)
     int vidaMaxima;
     int xp; 
     int nivel;
@@ -19,30 +19,34 @@ struct PLAYER {
     int dinero;
 };
 
-struct MONSTER {
+struct MONSTER { //ESTRUCTURA QUE DEFINE LOS PARAMETROS DEL MONSTRUO (aplica a todos los monstruos por la funcion elegirMonstruo) Tambien se podria incluir un parametro de la XP que da al morir, el oro o los objetos.
     char nombre;
     int vida;
     int dano;
 };
 
-int tirarDadoD10(){
+//las funciones int y void de debajo faltan por incluir los valores que van a usar que se estan usando en la funcion main en los parentesis. Por ejemplo: int elegirMonstruo(struct MONSTER monstruo){funcion}, por que usa esos valores que vienen de la funcion main,
+//y asi se devuelven modificados. 
+
+int tirarDadoD10(){ //FUNCION ENCARGADA DE TIRAR UN D10 (en la funcion danarMonnstruo y danarJugador se tira un d10 pero tendria que cambiarlo por esta funcion para que se dijese el resultado del dado y luego el daño)
     int resultado;
-    srand(time(NULL));
+    srand(time(NULL)); //esta linea inicia el randomizador segun el reloj del ordenador
     int resultado = (rand() % 10) + 1;
     printf ("El resultado de la tirada del dado D10 es %d\n", resultado);
+    return resultado; //el valor que devuelve es el resultado: si se hace --> tirarDadoD10(); en la main, se imprimira el resultado. Si se utiliza para cambiar un int en otra funcion se hace --> int resultado = tirarDadoD10; y se convertira en este valor.
 }
 
-void elegirMonstruo(){
-    struct MONSTER monstruo;
-    int resultado;
-    srand(time(NULL));
+void elegirMonstruo(){              //FUNCION QUE RANDOMIZA EL MONSTRUO. En el momento en el que el jugador se encuentra con un monstruo se tira esta funcion para randomizar.
+    struct MONSTER monstruo;        //Como cada vez que se elige un monstruo nuevo se le da parametros nuevos a los miembros de la estructura gracias a esta funcion, funciona como una
+    int resultado;                  //manera de cambiar toda la informacion del monstruo que usa el programa solamente cuando se elige uno nuevo, y que se usa hasta que se elige otro.
+    srand(time(NULL));              //Esta es la funcion que le sirve al programa para almacenar la informacion de los tres monstruos y rescatarla para mostrarsela al jugador.
     int resultado = rand() % 3;
     switch(resultado){
         case 0:
-            monstruo.nombre = "Goblin";
-            monstruo.vida = 15;
-            monstruo.dano = 10;
-        break;
+            monstruo.nombre = "Goblin";          //estas lineas actuan modificando los parametros dentro de la struct monstruo, definida arriba como una struct del tipo MONSTER.   
+            monstruo.vida = 15;                  //Cuando defines una struct arriba al inicio del programa defines el tipo, y al inicio de las funciones estableces las funciones de ese tipo que se van a usar.   
+            monstruo.dano = 10;                  //Si de repente quieres hacer una struct como la del jugador pero que solo sirva para NPC rivales con las mismas estadisticas, simplemente tendrias que   
+        break;                                   //hacer una struct tal que --> struct PLAYER npc; y se genera una struct llamada npc modificable con las variables de la struct PLAYER.   
         case 1:
             monstruo.nombre = "Orco";
             monstruo.vida = 20;
@@ -56,15 +60,15 @@ void elegirMonstruo(){
     }
 }
 
-void danarMonstruo(){
-    struct MONSTER monstruo;
-    struct PLAYER player;
-    srand(time(NULL));
+void danarMonstruo(){                       //FUNCION PARA HACER DAÑO AL MONSTRUO. Como esta funcion irá en la funcion main() dentro del bucle de combate y después de elegirse un monstruo, usa 
+    struct MONSTER monstruo;                //la información que ha recibido de la funcion elegirMonstruo. Pasa lo mismo con los parametros del jugador, que se definen en el momento en el que    
+    struct PLAYER player;                   //se elige el jugador en el menú principal (el cual aún esta por hacer jeje) y se van modificando cuando sufre daño, sube de nivel etc.
+    srand(time(NULL)); 
     int resultado = rand() % 10;
     int damage = resultado + player.dano;
     switch(resultado){
         case 0: 
-            printf("Has sacado pifia! No has hecho daño al %c\n", monstruo.nombre);
+            printf("Has sacado pifia! No has hecho daño al %c\n", monstruo.nombre);             
         break;
         case 10:
             int damage = player.dano * 2;
@@ -78,7 +82,7 @@ void danarMonstruo(){
     }
 }
 
-void danarPlayer(){
+void danarPlayer(){                         //FUNCION PARA HACER DAÑO AL JUGADOR CON EL MONSTRUO.
     struct MONSTER monstruo;
     struct PLAYER player;
     srand(time(NULL));
@@ -100,9 +104,9 @@ void danarPlayer(){
     }
 }
 
-void calcularXp(){
-    struct PLAYER player;
-    int exp;
+void calcularXp(){                  //FUNCION DE XP Y SUBIR DE NIVEL. Checkeo si se sube de nivel aqui porque solo se va a subir de nivel al conseguir xp,
+    struct PLAYER player;           // de esta manera no hay que estar chekeandolo constantemente con una funcion en bucle o algo asi. Si la xp no llega a lo suficiente
+    int exp;                        //simplemente se skipea el if y ya.
     player.xp = player.xp + exp;
     if(player.xp > xpNecesaria){
         player.xp = 0;
@@ -115,14 +119,13 @@ void calcularXp(){
     }
 }
 
-void elegirRecompensa(){
+void elegirRecompensa(){  //FUNCION PARA RANDOMIZAR RECOMPENSAS. En progreso
 
 }
 
 
-int main(){
-    struct MONSTER monstruo;
-    struct PLAYER player;
+int main(){                      //MAIN. Aqui ira todo el proceso del juego utilizando las otras funciones. Por ejemplo, en el momento en el que haya que tirar un dado simplemente 
+    struct MONSTER monstruo;     //pondrá la linea de texto --> tirarDadoD10();  y se ejecuta la funcion. Si se van a mover valores entre funciones hay que indicarlo entre los parentesis
+    struct PLAYER player;        //tanto aqui como en las funciones de arriba (aun no está hecho)
 
 }
-
