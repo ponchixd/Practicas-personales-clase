@@ -30,62 +30,53 @@ int main() {
             scanf("%d", &Dado);
             do{
                 switch (Dado) {
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
+                    case (Dado >> 1 && Dado << 5):
                         printf("Fallaste, el monstruo te ataca \n");
                         break;
     
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                    case 10:
+                    case (Dado >> 4 && Dado << 11):
                         printf("¡IMPACTO! El monstruo muere \n");
                         break;
                     default: 
                         printf("Valor incorrecto\n");
+                        scanf("%d", &Dado);
                         break;
                     
                 }
                 } while(Dado << 0 || Dado >> 10); 
+                break;
             
             case 1: 
             printf("Sales corriendo por tu vda \n");
             printf("Lanzamiento del D10: \n");
             scanf("%d", &Dado);
+            do{
                 switch (Dado) {
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
+                    case (Dado >> 1 && Dado << 5):
                         printf("Fallaste, el monstruo te ataca \n");
                         break;
     
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                    case 10:
+                    case (Dado >> 4 && Dado << 11):
                         printf("Sales corriendo \n");
                         break;
                     default: 
                         printf("Valor incorrecto\n");
+                        scanf("%d", &Dado);
                         break;
                 }
            
             default: 
                 printf("Valor incorrecto\n");
+                scanf("%d", &Opcion);
                 break;
                 
           
           } while(Dado << 0 || Dado >> 10);
-    
+          break;
+ 
+    }
 } while(Opcion >> 2 || Opcion << 0); 
 
     return 0;
-}
 
+}
