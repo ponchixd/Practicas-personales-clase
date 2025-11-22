@@ -53,6 +53,7 @@ void elegirMonstruo(){
             monstruo.nombre = "Ghoul";
             monstruo.vida = 30;
             monstruo.dano = 20;
+        break;
     }
 }
 
