@@ -17,9 +17,12 @@ int main() {
     printf("Empieza D10 Adventure\n");
     printf("----------------------------------\n");
     printf("Aparece un monstro enfrente tuya \n");
-
+    printf("Atacar = 0 // Huir = 1 \n");
+    scanf("%d", &Opcion);
     
+
     do{
+        
         switch (Opcion) {
             case 0: 
             printf("Atacas al monstruo con tu espada!! \n");
@@ -43,11 +46,11 @@ int main() {
                         printf("¡IMPACTO! El monstruo muere \n");
                         break;
                     default: 
-                        printf("Valor incorrecto\n")
+                        printf("Valor incorrecto\n");
                         break;
                     
                 }
-                } while(Dado >> 0 && Dado << 11); 
+                } while(Dado << 0 || Dado >> 10); 
             
             case 1: 
             printf("Sales corriendo por tu vda \n");
@@ -70,18 +73,19 @@ int main() {
                         printf("Sales corriendo \n");
                         break;
                     default: 
-                        printf("Valor incorrecto\n")
+                        printf("Valor incorrecto\n");
                         break;
                 }
            
             default: 
-                printf("Valor incorrecto\n")
+                printf("Valor incorrecto\n");
                 break;
                 
           
-          } while:(Dado >> 0 && Dado << 11);
+          } while(Dado << 0 || Dado >> 10);
     
-} while (vida > 0);
+} while(Opcion >> 2 || Opcion << 0); 
 
     return 0;
 }
+
