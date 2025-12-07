@@ -1,0 +1,69 @@
+#include <stdio.h>  // Incluimos la librería para interactuar con la consola.
+
+// Función main del programa. En el juego completo esta seria la funcion Menu
+int main() {
+    int opcion;  // Variable para almacenar la opción elegida por el usuario. La declaramos fuera del bucle para que esté disponible en la condición del while
+    
+    // Usamos un bucle do-while para mostrar el menú al menos una vez al abrir el juego (parte 'do'), 
+    // y repetirlo mientras la opción no sea 4 (salir), que es la condición en el 'while'
+    do {
+        // Imprimimos el menú en pantalla. 
+        printf("========================================\n");
+        printf("          HUNDIR LA FLOTA\n");
+        printf("========================================\n");
+        printf("1. Jugar\n");  // Opción para empezar el juego (aún no implementada)
+        printf("2. Informacion\n");  // Opción para mostrar las reglas del juego
+        printf("3. Mejores puntuaciones\n");  // Opción para ver puntuaciones (aún no implementada)
+        printf("4. Salir\n");  // Opción para salir del programa
+        printf("----------------------------------------\n");
+        printf("Elige una opcion (1-4): ");
+        
+        // Leemos la opción del usuario
+        scanf("%d", &opcion);
+        
+        
+        // Usamos una estructura switch para manejar las diferentes opciones. Podriamos usar una estrutura de IF y ELSE, pero un switch es mas escalable y ordenado a mi parecer.
+        switch (opcion) {
+            case 1:
+                // Si el usuario pone 1 salta este mensaje, en una version completa podria jugar.
+                printf("\nLa opcion de jugar no esta implementada todavia.\n");
+                printf("Pulsa Enter para volver al menu...\n");
+                getchar();  // Cuando el jugador pulse cualquier boton, saldra al menu.
+                break;  // Salimos del case y volvemos al bucle do-while
+            
+            case 2:
+                // Opción Información: Mostramos las reglas del juego. Posible tutorial.
+                printf("\n=== REGLAS DE HUNDIR LA FLOTA ===\n");
+                printf("Cada jugador tiene un tablero de 12x12 casillas.\n");
+                printf("Coloca tus barcos: 1 portaviones (4 casillas), 2 cruceros (3 cada uno), 3 patrulleros (2 cada uno).\n");
+                printf("Por turnos, elige una posicion para disparar al tablero enemigo.\n");
+                printf("Si aciertas a un barco, es 'tocado'; si no, 'agua'.\n");
+                printf("Gana quien hunda todos los barcos del rival primero.\n");
+                printf("==================================\n");
+                printf("Pulsa Enter para volver al menu...\n");
+                getchar();  
+                break;
+            
+            case 3:
+                // Si el usuario pone 3 salta este mensaje, en una version completa podria ver las estadisticas.
+                printf("\nLa opcion de mejores puntuaciones no esta implementada todavia.\n");
+                printf("Pulsa Enter para volver al menu...\n");
+                getchar();  
+                break;
+            
+            case 4:
+                // Si el usuario pone 4 salta este mensaje, como opcion==4, el while será falso y saldremos del bucle.
+                printf("\n¡Gracias por jugar! Hasta pronto.\n");
+                break;   
+            
+            default:
+                // Si la opción no es válida (no 1-4), mostramos error
+                printf("\nOpcion no valida. Elige entre 1 y 4.\n");
+                printf("Pulsa Enter para continuar...\n");
+                getchar();  // Pausa
+                break;
+        }
+    } while (opcion != 4);  // Repetimos el bucle mientras la opción no sea 4 (salir)
+    
+    return 0;  
+}
